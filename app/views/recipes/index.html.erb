@@ -1,4 +1,5 @@
 <h1>All Recipes</h1>
+<%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
 
 <ul>
   <% @recipes.each do |recipe| %>
