@@ -1,6 +1,8 @@
 require 'paprika_api'
 
 class RecipesController < ApplicationController
+  before_action :require_admin, only: [:sync]
+
   def index
     @recipes = Recipe.all
   end
@@ -30,7 +32,6 @@ class RecipesController < ApplicationController
     end
 
     redirect_to recipes_path
-    # only allow admin to sync
   end
 
   private
