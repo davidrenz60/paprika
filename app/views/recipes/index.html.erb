@@ -1,5 +1,9 @@
 <h1>All Recipes</h1>
-<%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
+
+<% if logged_in? && current_user.admin? %>
+  <%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
+  <%= link_to "logout", logout_path, method: "post" %>
+<% end %>
 
 <ul>
   <% @recipes.each do |recipe| %>
