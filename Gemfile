@@ -10,6 +10,7 @@ gem 'pg'
 gem 'faraday'
 gem 'figaro'
 gem 'bcrypt'
+gem 'friendly_id', '~> 5.1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

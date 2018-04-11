@@ -1,4 +1,7 @@
 class Recipe < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   validates :name, presence: true
   validates :rating, presence: true
   validates :ingredients, presence: true
