@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :require_admin, only: [:sync]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all.order(:name)
   end
 
   def show
