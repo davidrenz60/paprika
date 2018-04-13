@@ -1,44 +1,76 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/paprika
+    parallelism: 3
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/ruby:2.4-node
         environment:
-          PGHOST: localhost
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
           PGUSER: paprika
           RAILS_ENV: test
-      - image: postgres:9.5
+      - image: circleci/postgres:9.5-alpine
         environment:
-          POSTGRES_USER: paprika_user
+          POSTGRES_USER: paprika
           POSTGRES_DB: paprika_test
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
 
-      # Restore Cached Dependencies
-      - type: cache-restore
-        name: Restore bundle cache
-        key: your-app-name-{{ checksum "Gemfile.lock" }}
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
 
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
 
-      # Cache Dependencies
-      - type: cache-save
-        name: Store bundle cache
-        key: your-app-name-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
 
-      # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
 
-      # Setup the environment
-      - run: cp .sample.env .env
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
 
-      # Setup the database
-      - run: bundle exec rake db:setup
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
 
-      # Run the tests
-      - run: bundle exec rake
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      # Run rspec in parallel
+      - type: shell
+        command: |
+          bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
+                            --out test_results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      # Save test results for timing analysis
+      - store_test_results:
