@@ -12,21 +12,9 @@ class RecipesController < ApplicationController
   end
 
   def sync
-    recipes_data = client.recipes_index
+    recipes = Recipe.parse(client.recipes_index)
 
-    recipes = recipes_data.map do |data|
-      Recipe.new(
-        name: data["name"],
-        rating: data["rating"],
-        ingredients: data["ingredients"],
-        directions: data["directions"],
-        photo_url: data["photo_url"],
-        created: data["created"],
-        uid: data["uid"]
-      )
-    end
-
-    if recipes.all?(&:valid?)
+    if recipes
       Recipe.delete_all
       recipes.each(&:save)
       flash[:notice] = "Recipes successfully synced."
