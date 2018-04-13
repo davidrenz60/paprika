@@ -3,31 +3,42 @@ jobs:
   build:
     working_directory: ~/paprika
     docker:
-      - image: ruby:2.4.1
+      - image: circleci/ruby:2.4.1
         environment:
-          PG_HOST: localhost
-          PG_USER: ubuntu
+          PGHOST: localhost
+          PGUSER: paprika
           RAILS_ENV: test
-          RACK_ENV: test
-      # The following example uses the official postgres 9.6 image, you may also use circleci/postgres:9.6
-      # which includes a few enhancements and modifications. It is possible to use either image.
-      - image: postgres:9.6
+      - image: postgres:9.5
         environment:
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: db_name
+          POSTGRES_USER: paprika_user
+          POSTGRES_DB: paprika_test
+          POSTGRES_PASSWORD: ""
     steps:
       - checkout
-      - run:
-          name: Install Ruby Dependencies
-          command: bundle install
-      - run: sudo apt install postgresql-client
-      - run:
-          name: Set up DB
-          command: |
-            bundle exec rake db:create db:schema:load --trace
-            bundle exec rake db:migrate
-        environment:
-          DATABASE_URL: "postgres://ubuntu@localhost:5432/db_name"
-      - run:
-          name: Parallel RSpec
-          command: bin/rails test
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: your-app-name-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: your-app-name-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Setup the environment
+      - run: cp .sample.env .env
+
+      # Setup the database
+      - run: bundle exec rake db:setup
+
+      # Run the tests
+      - run: bundle exec rake
