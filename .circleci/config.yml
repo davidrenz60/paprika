@@ -9,12 +9,12 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
-          PGUSER: paprika
+          PGUSER: circleci-demo-ruby
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
-          POSTGRES_USER: paprika
-          POSTGRES_DB: paprika_test
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: rails_blog
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
@@ -74,3 +74,4 @@ jobs:
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       # Save test results for timing analysis
       - store_test_results:
+          path: test_results
