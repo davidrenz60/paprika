@@ -12,7 +12,6 @@ class RecipesController < ApplicationController
   end
 
   def sync
-    Recipe.delete_all
     recipes_data = client.recipes_index
 
     recipes = recipes_data.map do |data|
@@ -27,8 +26,12 @@ class RecipesController < ApplicationController
       )
     end
 
-    Recipe.transaction do
+    if recipes.all?(&:valid?)
+      Recipe.delete_all
       recipes.each(&:save)
+      flash[:notice] = "Recipes successfully synced."
+    else
+      flash[:danger] = "There was a problem syncing the recipes."
     end
 
     redirect_to recipes_path

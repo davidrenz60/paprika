@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    redirect_to recipes_path unless current_user.admin?
+    access_denied unless current_user && current_user.admin?
+  end
+
+  def access_denied
+    flash[:danger] = "You are not authorized to do that."
+    redirect_to root_path
   end
 end

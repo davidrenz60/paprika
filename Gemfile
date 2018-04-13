@@ -34,9 +34,12 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   gem "pry"
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'fabrication'
+  gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 group :development do
