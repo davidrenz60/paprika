@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
     recipes = Recipe.parse(client.recipes_index)
 
     if recipes
-      Recipe.delete_all
+      Recipe.destroy_all
       recipes.each(&:save)
       flash[:notice] = "Recipes successfully synced."
     else

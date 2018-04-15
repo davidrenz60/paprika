@@ -1,8 +1,16 @@
-<%= link_to "Back to all recipes", recipes_path %>
-<h1><%= @recipe.name %></h1>
-<p><%= @recipe.rating %></p>
-<p><%= @recipe.ingredients %></p>
-<p><%= @recipe.directions %></p>
-<p><%= @recipe.photo_url %></p>
-<p><%= @recipe.created %></p>
-<p><%= @recipe.uid %></p>
+<div class="recipe-header">
+  <% if @recipe.photo_url %>
+    <%= image_tag @recipe.photo_url, class: "recipe-image" %>
+  <% end %>
+  <h2 class="recipe-heading"><%= @recipe.name %></h1>
+</div>
+<div class="recipe-body">
+  <div class="recipe-ingredients">
+    <h3 class="recipe-heading">Ingredients</h1>
+    <p><%= @recipe.ingredients %></p>
+  </div>
+  <div class="recipe-directions">
+    <h3 class="recipe-heading">Directions</h1>
+    <p><%= @recipe.directions %></p>
+  </div>
+</div>
