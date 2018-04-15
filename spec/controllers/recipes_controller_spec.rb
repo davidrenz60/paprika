@@ -71,6 +71,23 @@ describe RecipesController do
       end
     end
 
+    context "with valid data and same names of existing recipes in the database" do
+      let!(:recipes) { [Fabricate(:recipe, name: "Burgers"), Fabricate(:recipe, name: "Steak"), Fabricate(:recipe, name: "Salad")] }
+
+      before do
+        Fabricate(:recipe, name: "Burgers")
+        Fabricate(:recipe, name: "Steak")
+        Fabricate(:recipe, name: "Salad")
+        set_admin_user
+        expect_any_instance_of(PaprikaApiClient).to receive(:recipes_index).and_return(recipes)
+        post :sync
+      end
+
+      it "keeps the same slug of the recipes with the same name" do
+        expect(Recipe.first.slug).to eq("burgers")
+      end
+    end
+
     context "with invalid data and existing recipes in the database" do
       let(:recipes) { Array.new(3) { Fabricate.attributes_for(:recipe) } }
 

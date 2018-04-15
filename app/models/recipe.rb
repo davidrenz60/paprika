@@ -13,12 +13,23 @@ class Recipe < ActiveRecord::Base
         rating: data["rating"],
         ingredients: data["ingredients"],
         directions: data["directions"],
-        photo_url: data["photo_url"],
+        photo_url: parse_image_url(data["photo_url"]),
         created: data["created"],
         uid: data["uid"]
       )
     end
 
-    recipes.all?(&:valid?) ? recipes : nil
+    if recipes.all?(&:valid?)
+      # slug generates with before_validation callback, reset to nil
+      recipes.each { |recipe| recipe.slug = nil }
+      recipes
+    else
+      nil
+    end
+  end
+
+  def self.parse_image_url(url)
+    return nil if url.blank?
+    url.match(/http.+.jpg/)[0]
   end
 end
