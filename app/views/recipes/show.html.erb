@@ -1,7 +1,5 @@
 <div class="recipe-header">
-  <% if @recipe.photo_url %>
-    <%= image_tag @recipe.photo_url, class: "recipe-image" %>
-  <% end %>
+  <%= image_tag @recipe.photo_url, class: "recipe-image" %>
   <h2 class="recipe-heading"><%= @recipe.name %></h1>
 </div>
 <div class="recipe-body">

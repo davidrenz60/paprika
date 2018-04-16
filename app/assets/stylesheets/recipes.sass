@@ -1,8 +1,5 @@
-.header
-  padding: 10px
-
 .recipes-list
-  padding: 10px
+  padding-left: 10px
 
 .recipes-list-image
   display: inline-block
@@ -10,15 +7,23 @@
   width: 70px
 
 .recipe-item
-  height: 70px
   border-bottom: 1px solid #BFBEBD
-  padding: 5px 0
   &:hover
     background: #ececec
-  h4
-    display: inline-block
-    vertical-align: top
-    margin-top: 10px
+  div
+    float: left
+  div + div
+    margin-left: 10px
   a
-    display: block
+    height: 100%
     width: 100%
+    display: block
+    padding: 5px 0
+    overflow: hidden
+
+@media (max-width:768px)
+  .recipe-item
+    div
+      float: none
+    div + div
+      margin-left: 0

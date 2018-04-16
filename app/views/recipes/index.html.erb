@@ -3,17 +3,17 @@
   <%= link_to "logout", logout_path, method: "post" %>
 <% end %>
 
-<div class="header">
-  <h3>All Recipes</h3>
-</div>
-
 <div class="recipes-list">
   <ul>
     <% @recipes.each do |recipe| %>
       <li class="recipe-item">
         <%= link_to recipe_path(recipe) do %>
+        <div>
           <%= image_tag recipe.photo_url, class: "recipes-list-image" %>
+        </div>
+        <div>
           <h4><%= recipe.name %></h4>
+        </div>
         <% end %>
       </li>
     <% end %>

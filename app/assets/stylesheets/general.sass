@@ -1,7 +1,13 @@
+html
+  height: 100%
+  overflow: hidden
+
 body
   font: 15px HelveticaNeue, Arial, sans-serif
-  background: #F5F5F5
   color: #454545
+  background: #3E4249
+  height: 100%
+  overflow: auto
 
 h2
   font-size: 20px
@@ -17,3 +23,31 @@ h4
 a
   text-decoration: none
   cursor: default
+
+.menu
+  box-sizing: border-box
+  width: 15%
+  float: left
+  padding: 10px
+  a
+    color: #E5E5DA
+    cursor: pointer
+
+
+.content
+  box-sizing: border-box
+  float: left
+  width: 85%
+  background: #F5F5F5
+
+.application:after
+  clear: both
+  content: ""
+  display: table
+
+.message
+
+@media (max-width:768px)
+  .menu, .content
+    float: none
+    width: 100%
