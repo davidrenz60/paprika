@@ -9,10 +9,13 @@
     margin-right: 10px
 
 .recipe-body
-  overflow: hidden
-  height: 100vh
   h3
     margin-bottom: 10px
+
+.recipe-body:after
+  clear: both
+  content: ""
+  display: table
 
 .recipe-heading
   color: #9C0000
@@ -52,5 +55,3 @@
     border-right: none
   .recipe-directions
     width: 100%
-  .recipe-body
-    overflow: auto
