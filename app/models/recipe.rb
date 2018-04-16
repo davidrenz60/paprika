@@ -1,6 +1,7 @@
 class Recipe < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
+  before_save :default_values
 
   validates :name, presence: true
   validates :ingredients, presence: true
@@ -31,5 +32,11 @@ class Recipe < ActiveRecord::Base
   def self.parse_image_url(url)
     return nil if url.blank?
     url.match(/http.+.jpg/)[0]
+  end
+
+  private
+
+  def default_values
+    self.photo_url = 'placeholder.jpg' if self.photo_url.blank?
   end
 end

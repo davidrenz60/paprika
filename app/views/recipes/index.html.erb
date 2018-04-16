@@ -1,14 +1,21 @@
-<h1>All Recipes</h1>
-
 <% if logged_in? && current_user.admin? %>
   <%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
   <%= link_to "logout", logout_path, method: "post" %>
 <% end %>
 
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li>
-      <%= link_to recipe.name, recipe_path(recipe) %>
-    </li>
-  <% end %>
-</ul>
+<div class="header">
+  <h3>All Recipes</h3>
+</div>
+
+<div class="recipes-list">
+  <ul>
+    <% @recipes.each do |recipe| %>
+      <li class="recipe-item">
+        <%= link_to recipe_path(recipe) do %>
+          <%= image_tag recipe.photo_url, class: "recipes-list-image" %>
+          <h4><%= recipe.name %></h4>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
