@@ -1,8 +1,3 @@
-<% if logged_in? && current_user.admin? %>
-  <%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
-  <%= link_to "logout", logout_path, method: "post" %>
-<% end %>
-
 <div class="recipes-list">
   <ul class="list-group">
     <% @recipes.each do |recipe| %>
