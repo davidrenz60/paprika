@@ -7,6 +7,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.4'
+gem 'bootstrap', '~> 4.1.0'
+gem 'jquery-rails'
 gem 'pg'
 gem 'faraday'
 gem 'figaro'

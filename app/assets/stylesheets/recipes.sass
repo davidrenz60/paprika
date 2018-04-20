@@ -1,31 +1,17 @@
 .recipes-list
-  padding-left: 10px
-
-.recipes-list-image
-  display: inline-block
-  height: 70px
-  width: 70px
-  border: 1px solid #C2C2C2 !important
-  border-radius: 5px
-
-.recipe-item
-  border-bottom: 1px solid #BFBEBD
-  &:hover
-    background: #ececec
-  div
-    float: left
-  div + div
-    margin-left: 10px
+  img
+    display: inline-block
+    height: 70px
+    width: 70px
   a
-    height: 100%
-    width: 100%
+    text-decoration: none
     display: block
-    padding: 5px 0
-    overflow: hidden
 
-@media (max-width:768px)
-  .recipe-item
-    div
-      float: none
-    div + div
-      margin-left: 0
+.recipe-list-item-info
+  display: inline-block
+  vertical-align: top
+
+.recipe-list-item
+    border-bottom: 1px solid #BFBEBD
+    &:hover
+      background: #ececec

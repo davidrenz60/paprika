@@ -1,14 +1,24 @@
-<div class="recipe-header">
-  <%= image_tag @recipe.photo_url, class: "recipe-image" %>
-  <h2 class="recipe-heading"><%= @recipe.name %></h1>
-</div>
-<div class="recipe-body">
-  <div class="recipe-ingredients">
-    <h3>Ingredients</h3>
-    <%= format_ingredients @recipe.ingredients %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="recipe-heading container-fluid">
+      <div class="row  p-2">
+        <div class="p-0">
+          <%= image_tag @recipe.photo_url, class: "recipe-img" %>
+        </div>
+        <div class="col">
+          <h4 class="mt-2"><%= @recipe.name %></h4>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="recipe-directions">
-    <h3>Directions</h3>
-    <%= simple_format @recipe.directions %>
+  <div class="row">
+    <div class="col-5 ingredients pt-3">
+      <h5>Ingredients</h5>
+      <%= format_ingredients @recipe.ingredients %>
+    </div>
+    <div class="col-7 directions pt-3">
+      <h5>Directions</h5>
+      <%= simple_format @recipe.directions %>
+    </div>
   </div>
 </div>

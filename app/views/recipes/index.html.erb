@@ -1,19 +1,12 @@
-<% if logged_in? && current_user.admin? %>
-  <%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
-  <%= link_to "logout", logout_path, method: "post" %>
-<% end %>
-
 <div class="recipes-list">
-  <ul>
+  <ul class="list-group">
     <% @recipes.each do |recipe| %>
-      <li class="recipe-item">
+      <li class="recipe-list-item py-1 pl-2">
         <%= link_to recipe_path(recipe) do %>
-        <div>
-          <%= image_tag recipe.photo_url, class: "recipes-list-image" %>
-        </div>
-        <div>
-          <h4><%= recipe.name %></h4>
-        </div>
+          <%= image_tag recipe.photo_url, class: "recipe-img" %>
+          <div class="recipe-list-item-info">
+            <h5 class="mt-2"><%= recipe.name %></h5>
+          </div>
         <% end %>
       </li>
     <% end %>
