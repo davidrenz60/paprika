@@ -1,52 +1,46 @@
-body
-  font: 15px HelveticaNeue, Arial, sans-serif
-  color: #454545
-  background: #3E4249
-
-h2
-  font-size: 20px
-  color: #9C0000
-
-h3
-  font-size: 17px
-  color: #9C0000
-
-h4
-  color: #9C0000
-
-a
-  text-decoration: none
-  cursor: default
-
-.menu
-  box-sizing: border-box
-  width: 15%
-  float: left
-  padding-top: 10px
-  a
-    display: block
-    color: #E5E5DA
-    cursor: pointer
-    width: 100%
-    padding: 3px 10px
-    &:hover
-      background: #484D51
-
+html, body, .menu, .content
+  min-height: 100vh
 
 .content
-  box-sizing: border-box
-  float: left
-  width: 85%
   background: #F5F5F5
 
-.application:after
-  clear: both
-  content: ""
-  display: table
+.menu
+  background: #3E4249
+
+  a
+    color: #E5E5DA
+    cursor: pointer
+    display: block
+    width: 100%
+    padding-left: 10px
+    &:hover
+      background: #484D51
+      text-decoration: none
+
+h4, h5
+  color: #9C0000
+  font-weight: bold
+
+h5
+  font-size: 16px
+
+h4
+  font-size: 17px
 
 .message
+  margin: 10px 5px
+  color: #E5E5DA
 
-@media (max-width:768px)
-  .menu, .content
-    float: none
-    width: 100%
+ul
+  list-style-type: none
+
+@media (max-width: 992px)
+  html, body, .menu
+    min-height: auto
+  .content
+    min-height: 100vh
+
+.recipe-img
+  border: 1px solid #C2C2C2 !important
+  border-radius: 5px
+
