@@ -8,7 +8,10 @@ class PaprikaApiClient
 
   def recipes_data
     response = connection.get "recipes/"
-    JSON.parse(response.body)["result"]
+    response = JSON.parse(response.body)["result"]
+    # create a 'token' key, since 'hash' is reserved
+    response.each { |recipe| recipe["token"] = recipe["hash"] }
+    response
   end
 
   def recipes_index
@@ -17,7 +20,9 @@ class PaprikaApiClient
 
   def recipe(id)
     response = connection.get "recipe/#{id}/"
-    JSON.parse(response.body)["result"]
+    response = JSON.parse(response.body)["result"]
+    response["token"] = response["hash"]
+    response
   end
 
   private

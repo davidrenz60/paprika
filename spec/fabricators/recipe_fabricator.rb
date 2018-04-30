@@ -5,4 +5,5 @@ Fabricator(:recipe) do
   directions { Faker::Lorem.paragraph }
   created { Faker::Date.backward(20) }
   uid { Faker::Lorem.characters(15) }
+  token { Faker::Lorem.characters(15) }
 end
