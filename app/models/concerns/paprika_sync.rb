@@ -63,7 +63,7 @@ module PaprikaSync
       client.recipe(uid)
     end
 
-    def self.parse_image_url(url)
+    def parse_image_url(url)
       return nil if url.blank?
       match = url.match(/http.+.jpg/)
 
