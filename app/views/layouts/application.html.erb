@@ -10,12 +10,7 @@
 
   <body>
     <div class="header">
-      <% if logged_in? && current_user.admin? %>
-        <%= link_to sync_recipes_path, method: "post", class: "link-icon" do %>
-          <%= octicon "sync", height: 24 %>
-          <p>Sync</p>
-        <% end %>
-      <% end %>
+      <%= render 'layouts/header' %>
     </div>
     <div class="container-fluid">
       <div class="row">

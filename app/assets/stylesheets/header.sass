@@ -1,10 +1,27 @@
 .header
-  padding-left: 10px
+  box-sizing: border-box
+  padding: 5px 0 5px 10px
   background: #D5D5D5
-  height: 50px
   border-bottom: 1px solid #AAAAAA
+  min-height: 58px
 
   svg
     fill: #3E4249
   p
     color: #454545
+
+.search-bar::placeholder
+  color: #c5c0c0
+
+.recipe-search
+  input
+    padding-left: 25px
+    width: 400px
+    position: relative
+    top: 6px
+  svg
+    position: absolute
+    top: 13px
+    left: 5px
+    z-index: 1
+
