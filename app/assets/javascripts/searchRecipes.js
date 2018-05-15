@@ -5,7 +5,7 @@
     const query = e.target.value
 
     if (query === "") {
-      recipes.forEach(el => el.style.display = "")
+      recipes.forEach(el => el.classList.remove('hide'))
       return
     }
 
@@ -13,9 +13,9 @@
       let name = el.querySelector('.recipe-name').innerText
 
       if (match(name, query)) {
-        el.style.display = ""
+        el.classList.remove('hide')
       } else {
-        el.style.display = "none"
+        el.classList.add('hide')
       }
     })
   }
