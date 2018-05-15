@@ -1,5 +1,6 @@
 {
   const $recipes = $('.recipe-list-item')
+  debugger
 
   const searchRecipes = (e) => {
     const query = e.target.value
@@ -13,10 +14,7 @@
       let $el = $(el)
       let name = $el.find('.recipe-name').text()
 
-
-      console.log(query)
-      console.log(name)
-
+      debugger
       if (match(name, query)) {
         $el.show()
       } else {
