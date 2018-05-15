@@ -10,7 +10,8 @@
     }
 
     $recipes.each((idx, el) => {
-      let name = $(el).find('.recipe-name').text()
+      let $el = $(el)
+      let name = $el.find('.recipe-name').text()
 
       if (match(name, query)) {
         $el.show()
