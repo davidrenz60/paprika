@@ -1,7 +1,7 @@
 {
   const $recipes = $('.recipe-list-item')
 
-  searchRecipes = (e) => {
+  const searchRecipes = (e) => {
     const query = e.target.value
 
     if (query === "") {
@@ -19,7 +19,7 @@
     })
   }
 
-  match = (word, query) => {
+  const match = (word, query) => {
     return (word.toLowerCase().search(query) !== -1)
   }
 
