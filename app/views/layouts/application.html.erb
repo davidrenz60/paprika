@@ -4,11 +4,13 @@
     <title>Paprika</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
+    <div class="header">
+      <%= render 'layouts/header' %>
+    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-2 menu py-2 px-0">
@@ -20,5 +22,6 @@
         </div>
       </div>
     </div>
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>

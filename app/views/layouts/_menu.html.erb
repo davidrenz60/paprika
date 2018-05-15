@@ -1,8 +1,12 @@
-<%= link_to "All Recipes", recipes_path %>
+<%= link_to recipes_path, class: "link-icon" do %>
+  <%= octicon "note", height: 22 %>
+  <p>Recipes <span class="badge"><%= Recipe.count %></span></p>
+<% end %>
 <% if logged_in? && current_user.admin? %>
-  <div class="admin-control mt-5">
-    <p class="m-0">Admin</p>
-    <%= link_to "Sync all recipes", sync_recipes_path, method: "post" %>
-    <%= link_to "Logout", logout_path, method: "post" %>
+  <div class="admin-control mt-2">
+    <%= link_to logout_path, method: "post", class: "link-icon" do %>
+      <%= octicon "sign-out", height: 22 %>
+      <p>Logout</p>
+      <% end %>
   </div>
 <% end %>
