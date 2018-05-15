@@ -5,7 +5,7 @@
         <%= link_to recipe_path(recipe) do %>
           <%= image_tag recipe.photo_url, class: "recipe-img" %>
           <div class="recipe-list-item-info">
-            <h5 class="mt-2"><%= recipe.name %></h5>
+            <h5 class="mt-2 recipe-name"><%= recipe.name %></h5>
           </div>
         <% end %>
       </li>

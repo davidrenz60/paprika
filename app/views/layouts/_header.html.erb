@@ -12,13 +12,13 @@
       <% if params[:controller] == "recipes" %>
         <% if params[:action] == "show" %>
           <%= link_to recipes_path, class: "link-icon" do %>
-          <%= octicon "arrow-left", height: 24 %>
-          <p>Back</p>
-        <% end %>
+            <%= octicon "arrow-left", height: 24 %>
+            <p>Back</p>
+          <% end %>
         <% elsif params[:action] == "index" %>
           <div class="recipe-search">
             <%= octicon "search" %>
-            <input type="text" placeholder="Search by name" class="search-bar">
+            <input type="text" placeholder="Search by name" id="search-bar">
           </div>
         <% end %>
       <% end %>
