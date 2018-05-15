@@ -13,6 +13,10 @@
       let $el = $(el)
       let name = $el.find('.recipe-name').text()
 
+
+      console.log(query)
+      console.log(name)
+
       if (match(name, query)) {
         $el.show()
       } else {
