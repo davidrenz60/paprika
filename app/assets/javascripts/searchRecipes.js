@@ -1,24 +1,21 @@
 {
-  const $recipes = $('.recipe-list-item')
-  debugger
+  const recipes = document.querySelectorAll('.recipe-list-item')
 
   const searchRecipes = (e) => {
     const query = e.target.value
 
     if (query === "") {
-      $recipes.show()
+      recipes.forEach(el => el.style.display = "")
       return
     }
 
-    $recipes.each((idx, el) => {
-      let $el = $(el)
-      let name = $el.find('.recipe-name').text()
+    recipes.forEach(el => {
+      let name = el.querySelector('.recipe-name').innerText
 
-      debugger
       if (match(name, query)) {
-        $el.show()
+        el.style.display = ""
       } else {
-        $el.hide()
+        el.style.display = "none"
       }
     })
   }
@@ -27,7 +24,7 @@
     return (word.toLowerCase().search(query) !== -1)
   }
 
-  $('#search-bar').on('input', searchRecipes)
+  document.getElementById('search-bar').addEventListener('input', searchRecipes)
 }
 
 
