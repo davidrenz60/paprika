@@ -23,7 +23,7 @@
     return (word.toLowerCase().search(query) !== -1)
   }
 
-  $('#search-bar').on('keyup', searchRecipes)
+  $('#search-bar').on('input', searchRecipes)
 }
 
 
