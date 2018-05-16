@@ -1,30 +1,27 @@
 {
-  const recipes = document.querySelectorAll('.recipe-list-item')
+  const $recipes = $('.recipe-list-item')
 
   const searchRecipes = (e) => {
     const query = e.target.value
 
     if (query === "") {
-      recipes.forEach(el => el.classList.remove('hide'))
+      $recipes.show()
       return
     }
 
-    recipes.forEach(el => {
-      let name = el.querySelector('.recipe-name').innerText
+    $recipes.each((idx, el) => {
+      let $el = $(el)
+      let name = $el.find('.recipe-name').text()
 
-      if (match(name, query)) {
-        el.classList.remove('hide')
-      } else {
-        el.classList.add('hide')
-      }
+      match(name, query) ? $el.show() : $el.hide()
     })
   }
 
   const match = (word, query) => {
-    return (word.toLowerCase().search(query) !== -1)
+    return (word.toLowerCase().search(query.toLowerCase()) !== -1)
   }
 
-  document.getElementById('search-bar').addEventListener('input', searchRecipes)
+  $('#search-bar').on('input', searchRecipes)
 }
 
 
