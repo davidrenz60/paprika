@@ -4,7 +4,11 @@ class RecipesController < ApplicationController
   before_action :require_admin, only: [:sync]
 
   def index
-    @recipes = Recipe.all.order(:name)
+    @recipes = if params[:sort_by] == "created"
+                 Recipe.all.order(created: :desc)
+               else
+                 Recipe.all.order(:name)
+               end
   end
 
   def show
