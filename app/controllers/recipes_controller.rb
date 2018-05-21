@@ -20,4 +20,10 @@ class RecipesController < ApplicationController
     flash[:info] = "Recipes successfully synced."
     redirect_to recipes_path
   end
+
+  def send_email
+    require 'pry'; binding.pry
+    @recipe = Recipe.friendly.find(params[:id])
+    redirect_to recipe_path(@recipe)
+  end
 end
