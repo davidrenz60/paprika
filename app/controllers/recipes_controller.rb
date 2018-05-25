@@ -22,8 +22,8 @@ class RecipesController < ApplicationController
   end
 
   def send_email
-    require 'pry'; binding.pry
-    @recipe = Recipe.friendly.find(params[:id])
-    redirect_to recipe_path(@recipe)
+    recipe = Recipe.find(params[:recipe_id])
+    email = params[:email]
+    RecipeMailer.recipe_email(recipe, email).deliver_now
   end
 end
