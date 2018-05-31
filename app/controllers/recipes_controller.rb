@@ -25,5 +25,10 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(params[:recipe_id])
     email = params[:email]
     RecipeMailer.recipe_email(recipe, email).deliver_now
+
+    respond_to do |format|
+      format.html { redirect_to recipe_path(recipe) }
+      format.js
+    end
   end
 end

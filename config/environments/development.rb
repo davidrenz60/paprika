@@ -1,4 +1,14 @@
 Rails.application.configure do
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['sendgrid_username'],
+    :password => ENV['sendgrid_password'],
+    :domain => 'admin@renz-recipes.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -26,7 +36,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
