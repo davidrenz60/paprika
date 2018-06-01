@@ -13,10 +13,39 @@
         <% if params[:action] == "show" %>
           <ul class="nav">
             <li class="nav-item">
-              <%= link_to recipes_path, class: "link-icon back-button btn btn-sm" do %>
+              <%= link_to recipes_path, class: "link-icon header-button btn btn-sm" do %>
                 <%= octicon "arrow-left" %>
                 <p>Back</p>
               <% end %>
+            </li>
+             <li class="nav-item">
+              <button type="button" class="btn btn-sm link-icon header-button" data-toggle="modal" data-target="#exampleModal">
+                <%= octicon "mail" %>
+              </button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Email this Recipe</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                       <%= form_tag recipe_send_email_path(@recipe.id), remote: true do  %>
+                        <div class="form-group">
+                          <%= label_tag :email %>
+                          <%= email_field_tag :email, nil, class: "form-control", required: true %>
+                        </div>
+                        <div class="form-group">
+                          <button type="button" class="btn btn-secondary" id="email-close-button" data-dismiss="modal">Close</button>
+                          <%= submit_tag 'Send', class: "btn btn-secondary" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
         <% elsif params[:action] == "index" %>
