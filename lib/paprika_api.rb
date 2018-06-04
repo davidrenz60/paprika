@@ -25,6 +25,12 @@ class PaprikaApiClient
     response
   end
 
+  def categories
+    response = connection.get "categories/"
+    response = JSON.parse(response.body)["result"]
+    response
+  end
+
   private
 
   def connection
