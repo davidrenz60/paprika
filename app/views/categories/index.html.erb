@@ -1,0 +1,22 @@
+<% content_for :header do %>
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to recipes_path, class: "link-icon header-button btn btn-sm" do %>
+        <%= octicon "arrow-left" %>
+        <p>Back</p>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+<div class="pt-2">
+  <ul>
+    <% @categories.each do |category| %>
+      <li>
+        <%= link_to "" do %>
+          <h5><%= category.name %></h5>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

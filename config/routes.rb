@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories, only: [:index]
+
 
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
