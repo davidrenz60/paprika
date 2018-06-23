@@ -198,15 +198,24 @@ describe PaprikaSync do
 
   describe "#update_categories" do
     context "with valid category data" do
-      let(:category_data) do
+      let(:categories_data) do
         [{ "uid" => "123",
            "name" => "pizza" },
          { "uid" => "456",
            "token" => "pasta" }]
       end
 
+      before do
+        expect_any_instance_of(PaprikaApi::Client).to receive(:categories).and_return(categories_data)
+      end
+
       it "saves a new category" do
-        expect_any_instance_of(PaprikaApi::Client).to receive(:categories).and_return(category_data)
+        PaprikaSync.new.update_categories
+        expect(Category.count).to eq(2)
+      end
+
+      it "won't duplicate the same category" do
+        Category.create(uid: "123", name: "pasta")
         PaprikaSync.new.update_categories
         expect(Category.count).to eq(2)
       end

@@ -1,9 +1,10 @@
 class PaprikaSync
-  attr_reader :error_message, :recipes_data, :uids
+  attr_reader :error_message, :recipes_data, :uids, :categories_data
 
   def initialize
     @recipes_data = client.recipes_data
     @uids = @recipes_data.map { |data| data["uid"] }
+    @categories_data = client.categories
   rescue PaprikaApi::Error => e
     @status = :error
     @error_message = e.message
@@ -31,19 +32,14 @@ class PaprikaSync
   end
 
   def update_categories
-    client.categories.each do |category|
+    categories_data.each do |category|
+      next if Category.find_by(uid: category["uid"])
+
       Category.create!(
         name: category["name"],
         uid: category["uid"]
-        )
+      )
     end
-  end
-
-  def parse_image_url(url)
-    return nil if url.blank?
-    match = url.match(/http.+.jpg/)
-
-    match ? match[0] : url
   end
 
   def save_new_recipes
@@ -53,7 +49,7 @@ class PaprikaSync
       uids.each do |uid|
         next if current_uids.include?(uid)
         recipe_data = client.recipe(uid)
-        Recipe.create!(
+        recipe = Recipe.create!(
           name: recipe_data["name"],
           rating: recipe_data["rating"],
           ingredients: recipe_data["ingredients"],
@@ -63,12 +59,10 @@ class PaprikaSync
           uid: recipe_data["uid"],
           token: recipe_data["token"]
         )
+
+        recipe.category_ids = recipe_data["categories"]
       end
     end
-  end
-
-  def client
-    @client ||= PaprikaApi::Client.new(ENV["paprika_email"], ENV["paprika_password"])
   end
 
   def delete_old_recipes
@@ -86,6 +80,7 @@ class PaprikaSync
           name: recipe_data["name"],
           rating: recipe_data["rating"],
           ingredients: recipe_data["ingredients"],
+          category_ids: recipe_data["categories"],
           directions: recipe_data["directions"],
           photo_url: parse_image_url(recipe_data["photo_url"]),
           created: recipe_data["created"],
@@ -94,5 +89,16 @@ class PaprikaSync
         )
       end
     end
+  end
+
+  def client
+    @client ||= PaprikaApi::Client.new(ENV["paprika_email"], ENV["paprika_password"])
+  end
+
+  def parse_image_url(url)
+    return nil if url.blank?
+    match = url.match(/http.+.jpg/)
+
+    match ? match[0] : url
   end
 end
