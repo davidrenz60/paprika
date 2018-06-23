@@ -1,3 +1,17 @@
+<% content_for :header do %>
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to recipes_path, class: "link-icon header-button btn btn-sm" do %>
+        <%= octicon "arrow-left" %>
+        <p>Back</p>
+      <% end %>
+    </li>
+   <li class="nav-item">
+     <%= render 'shared/email_recipe' %>
+    </li>
+  </ul>
+<% end %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="recipe-heading container-fluid">

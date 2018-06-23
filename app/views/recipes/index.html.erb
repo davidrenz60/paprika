@@ -1,3 +1,26 @@
+<% content_for :header do %>
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="input-group input-group-sm recipe-search">
+        <%= octicon "search" %>
+        <input type="text" placeholder="Search by Name" id="search-bar" class="form-control">
+      </div>
+    </li>
+    <li class="recipe-sort nav-item">
+      <div class="dropdown">
+        <button class="btn btn-sm dropdown-toggle sort-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= octicon "list-unordered" %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <h6 class="dropdown-header">Sort By</h6>
+          <%= link_to "Name", recipes_path, class: "dropdown-item" %>
+          <%= link_to "Most Recent", recipes_path(sort_by: "created"), class: "dropdown-item" %>
+        </div>
+      </div>
+    </li>
+  </ul>
+<% end %>
+
 <div class="recipes-list">
   <ul class="list-group">
     <% @recipes.each do |recipe| %>
@@ -12,3 +35,5 @@
     <% end %>
   </ul>
 </div>
+
+

@@ -1,5 +1,3 @@
-require 'paprika_api'
-
 class RecipesController < ApplicationController
   before_action :require_admin, only: [:sync]
 
@@ -16,8 +14,14 @@ class RecipesController < ApplicationController
   end
 
   def sync
-    Recipe.sync
-    flash[:info] = "Recipes successfully synced."
+    sync = PaprikaSync.new.call
+
+    if sync.successful?
+      flash[:info] = "Recipes successfully synced."
+    else
+      flash[:danger] = sync.error_message
+    end
+
     redirect_to recipes_path
   end
 

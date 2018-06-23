@@ -3,6 +3,7 @@ class RecipeMailer < ActionMailer::Base
   helper ApplicationHelper
 
   def recipe_email(recipe, email)
+    return if email.blank?
     @recipe = recipe
     @email = email
     mail(to: @email, subject: "Here is your recipe!")
