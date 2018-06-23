@@ -13,7 +13,7 @@
   <ul>
     <% @category.recipes.each do |recipe| %>
       <li>
-        <%= link_to "" do %>
+        <%= link_to recipe_path(recipe) do %>
           <h5><%= recipe.name %></h5>
         <% end %>
       </li>
