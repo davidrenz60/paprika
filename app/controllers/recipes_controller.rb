@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.friendly.find(params[:id])
+    @categories = @recipe.categories.map(&:name).join(', ')
   end
 
   def sync
