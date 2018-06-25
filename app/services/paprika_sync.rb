@@ -74,7 +74,7 @@ class PaprikaSync
     Recipe.transaction do
       recipes_data.each do |data|
         recipe = Recipe.find_by(uid: data["uid"])
-        # next if recipe.token == data["token"]
+        next if recipe.token == data["token"]
         recipe_data = client.recipe(recipe.uid)
 
         recipe.update!(
