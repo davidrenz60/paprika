@@ -21,7 +21,12 @@
         </div>
         <div class="col">
           <h4 class="mt-2"><%= @recipe.name %></h4>
-          <p class="font-italic small-font"><%= @categories %></p>
+          <p class="small-font"><em><%= @categories %></em></p>
+          <% if @recipe.source %>
+            <p class="small-font"><em>From</em>
+            <%= link_to @recipe.source, "http://#{@recipe.source}" %>
+          <% end %>
+          </p>
         </div>
       </div>
     </div>

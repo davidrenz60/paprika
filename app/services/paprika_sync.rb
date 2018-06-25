@@ -53,6 +53,7 @@ class PaprikaSync
           name: recipe_data["name"],
           rating: recipe_data["rating"],
           ingredients: recipe_data["ingredients"],
+          source: recipe_data["source"],
           directions: recipe_data["directions"],
           photo_url: parse_image_url(recipe_data["photo_url"]),
           created: recipe_data["created"],
@@ -73,13 +74,14 @@ class PaprikaSync
     Recipe.transaction do
       recipes_data.each do |data|
         recipe = Recipe.find_by(uid: data["uid"])
-        next if recipe.token == data["token"]
+        # next if recipe.token == data["token"]
         recipe_data = client.recipe(recipe.uid)
 
         recipe.update!(
           name: recipe_data["name"],
           rating: recipe_data["rating"],
           ingredients: recipe_data["ingredients"],
+          source: recipe_data["source"],
           category_ids: recipe_data["categories"],
           directions: recipe_data["directions"],
           photo_url: parse_image_url(recipe_data["photo_url"]),

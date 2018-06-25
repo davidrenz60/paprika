@@ -13,7 +13,7 @@
   <ul>
     <% @categories.each do |category| %>
       <li>
-        <%= link_to category_path(category.id) do %>
+        <%= link_to category_path(category) do %>
           <h5><%= category.name %></h5>
         <% end %>
       </li>
