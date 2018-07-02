@@ -4,4 +4,8 @@ module ApplicationHelper
     highlighted = ingredients.gsub(regex) { |match| "<strong>#{match}</strong>" }
     simple_format highlighted
   end
+
+  def previous_path
+    request.referrer || recipes_path
+  end
 end
