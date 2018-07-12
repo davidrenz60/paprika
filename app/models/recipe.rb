@@ -12,6 +12,10 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_categories, primary_key: :uid, foreign_key: :recipe_uid
   has_many :categories, through: :recipe_categories
 
+  def should_generate_new_friendly_id?
+    name_changed? || super
+  end
+
   def self.uids
     all.map(&:uid)
   end

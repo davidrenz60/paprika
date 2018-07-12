@@ -85,11 +85,11 @@ describe PaprikaSync do
 
   describe "#update_recipes" do
     context "with valid updated recipe data" do
-      let!(:recipe1) { Fabricate(:recipe, "uid" => "123", "token" => "abc") }
-      let!(:recipe2) { Fabricate(:recipe, "uid" => "456", "token" => "def") }
-      let!(:recipe3) { Fabricate(:recipe, "uid" => "789", "token" => "ghi") }
+      let!(:recipe1) { Fabricate(:recipe, "uid" => "123", "token" => "abc", "name" => "Pasta") }
+      let!(:recipe2) { Fabricate(:recipe, "uid" => "456", "token" => "def", "name" => "Pizza") }
+      let!(:recipe3) { Fabricate(:recipe, "uid" => "789", "token" => "ghi", "name" => "Soup") }
 
-      let(:updated_recipe) { Fabricate.attributes_for(:recipe, "uid" => "789", "token" => "jkl") }
+      let(:updated_recipe) { Fabricate.attributes_for(:recipe, "uid" => "789", "token" => "jkl", "name" => "Barbecue Ribs") }
 
       let(:recipes_data) do
         [{ "uid" => "123",

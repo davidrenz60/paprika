@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe Recipe do
+  it "updates the slug if the name is changed" do
+    recipe = Fabricate(:recipe, name: "Pizza")
+    recipe.update(name: "Barbecue Ribs")
+    expect(recipe.slug).to eq("barbecue-ribs")
+  end
+
   describe ".delete_not_in" do
     context "a recipe was removed from the uid list" do
       let!(:recipe1) { Fabricate(:recipe, uid: "123") }
@@ -13,6 +19,8 @@ describe Recipe do
         expect(Recipe.count).to eq(2)
         expect(Recipe.all.map(&:uid)).to eq(uids)
       end
+
+
     end
   end
 end
