@@ -6,11 +6,17 @@
   <%= octicon "tag", height: 22 %>
   <p>Categories <span class="badge"><%= Category.count %></span></p>
 <% end %>
-<% if logged_in? && current_user.admin? %>
-  <div class="admin-control mt-2">
+
+<div class="admin-control mt-2">
+  <% if logged_in? %>
     <%= link_to logout_path, method: "post", class: "link-icon" do %>
       <%= octicon "sign-out", height: 22 %>
       <p>Logout</p>
-      <% end %>
-  </div>
-<% end %>
+    <% end %>
+  <% else %>
+    <%= link_to login_path, class: "link-icon" do %>
+      <%= octicon "sign-in", height: 22 %>
+      <p>Login</p>
+    <% end %>
+  <% end %>
+</div>

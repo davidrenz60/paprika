@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def login(user)
+    session[:user_id] = user.id
+  end
+
   def require_admin
     access_denied unless current_user && current_user.admin?
   end

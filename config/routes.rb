@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index, :show]
+  resources :users, only: [:create]
 
-
-  get '/login', to: "sessions#new"
-  post '/login', to: "sessions#create"
-  post '/logout', to: "sessions#destroy"
+  get '/register', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
 end
