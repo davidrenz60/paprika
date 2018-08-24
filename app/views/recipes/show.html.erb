@@ -41,14 +41,14 @@
       <%= simple_format @recipe.directions %>
     </div>
   </div>
-  <!-- <div class="row ">
+  <div class="row ">
     <div class="col pt-3">
       <h5>Comments</h5>
       <% if logged_in? %>
         <div class="comments">
           <div class="comment">
             <div class="comment-header">
-              <strong>Dave</strong>
+              <strong>Name</strong>
               <p>1/1/2018</p>
             </div>
             <div class="comment-body">
@@ -56,9 +56,10 @@
             </div>
           </div>
         </div>
+        <%= render 'comments/new' %>
       <% else %>
         <p>Please <%= link_to "login", login_path %> to view comments</p>
       <% end %>
     </div>
-  </div> -->
+  </div>
 </div>
