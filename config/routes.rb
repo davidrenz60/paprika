@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index, :show]
   resources :users, only: [:create]
+  resources :comments, only: [:create]
 
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
