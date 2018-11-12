@@ -22,6 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'letter_opener'
 gem 'sprockets', '~> 3.7.2'
+gem 'rubyzip', '~> 1.2.2'
+gem 'ffi', '~> 1.9.24'
+gem 'loofah', '~> 2.2.3'
 
 group :development, :test do
   gem "pry"
