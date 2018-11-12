@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.4'
-gem 'bootstrap', '~> 4.1.0'
+gem 'bootstrap', '~> 4.1.2'
 gem 'jquery-rails'
 gem 'pg'
 gem 'faraday'
@@ -22,6 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'letter_opener'
 gem 'sprockets', '~> 3.7.2'
+gem 'rubyzip', '~> 1.2.2'
+gem 'ffi', '~> 1.9.24'
+gem 'loofah', '~> 2.2.3'
 
 group :development, :test do
   gem "pry"
