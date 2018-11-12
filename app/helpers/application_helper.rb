@@ -6,6 +6,14 @@ module ApplicationHelper
   end
 
   def previous_path
-    request.referrer || recipes_path
+    if request.url == request.referrer || !request.referrer
+      recipes_path
+    else
+      request.referrer
+    end
+  end
+
+  def display_datetime(dt)
+    dt.strftime("%m/%d/%y at %l:%M%P")
   end
 end

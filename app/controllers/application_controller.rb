@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :recipes_count
+  helper_method :current_user, :logged_in?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     access_denied unless current_user && current_user.admin?
+  end
+
+  def require_user
+    access_denied unless current_user
   end
 
   def access_denied

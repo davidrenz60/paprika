@@ -39,7 +39,6 @@ describe RecipesController do
     end
 
     it_behaves_like "require admin" do
-      user = Fabricate(:user)
       let(:action) { post :sync }
     end
   end
