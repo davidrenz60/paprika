@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "recipes#index"
 
   resources :recipes, only: [:index, :show] do
+    resources :comments, only: [:create]
     post '/send_email', to: "recipes#send_email"
     collection do
       post "sync"

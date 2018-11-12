@@ -31,6 +31,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-5 ingredients pt-3">
       <h5>Ingredients</h5>
@@ -41,24 +42,20 @@
       <%= simple_format @recipe.directions %>
     </div>
   </div>
-  <!-- <div class="row ">
-    <div class="col pt-3">
-      <h5>Comments</h5>
+
+  <div class="row ">
+    <div class="col pt-3 pb-5">
+      <h5 class="pb-4">Comments (<%= @recipe.comments.count %>)</h5>
       <% if logged_in? %>
         <div class="comments">
-          <div class="comment">
-            <div class="comment-header">
-              <strong>Dave</strong>
-              <p>1/1/2018</p>
-            </div>
-            <div class="comment-body">
-              <p>this recipe is awesome</p>
-            </div>
-          </div>
+          <% @recipe.comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment %>
+          <% end %>
+          <%= render 'comments/new', recipe: @recipe, comment: @comment %>
         </div>
       <% else %>
         <p>Please <%= link_to "login", login_path %> to view comments</p>
       <% end %>
     </div>
-  </div> -->
+  </div>
 </div>

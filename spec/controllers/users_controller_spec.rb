@@ -4,7 +4,7 @@ describe UsersController do
   describe "POST create" do
     context "with valid credentials" do
       before do
-        post :create, params: { user: { username: "dave", password: "abc" } }
+        post :create, params: { user: { username: "dave", password: "abc", email: "test@example.com" } }
       end
 
       it "creates a new user" do

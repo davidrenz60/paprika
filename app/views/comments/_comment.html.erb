@@ -1,0 +1,12 @@
+<div class="comment mb-4">
+  <div class="comment-header">
+    <img class="avatar" src="https://www.gravatar.com/avatar/0000.jpg">
+    <div class="commenter-info mb-3 ml-5">
+      <p class="m-0 font-weight-bold"><%= comment.user.username %></strong>
+      <p class="m-0"><small><%= display_datetime comment.created_at %></small></p>
+    </div>
+  </div>
+  <div class="comment-body">
+    <p class="m-0"><%= comment.body %></p>
+  </div>
+</div>

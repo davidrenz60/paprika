@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-sm comment-button" data-toggle="modal" data-target="#newCommentModal">
+  Add a comment
+</button>
+<div class="modal fade" id="newCommentModal" tabindex="-1" role="dialog" aria-labelledby="newCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newCommentModalLabel">Add a comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <%= form_for [recipe, comment], url: recipe_comments_path(recipe.id) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :body, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary" id="email-close-button" data-dismiss="modal">Close</button>
+            <%= submit_tag 'Submit', class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
