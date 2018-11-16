@@ -43,18 +43,18 @@ describe RecipesController do
     end
   end
 
-  describe "send_email" do
+  describe "POST send_email" do
     context "with valid email address" do
       let!(:recipe) { Fabricate(:recipe) }
 
       it "sends an email through an ajax request" do
-        post :send_email, xhr: true, params: { recipe_id: recipe.id, email: "dave@test.com" }
+        post :send_email, xhr: true, params: { id: recipe.id, email: "dave@test.com" }
 
         expect(ActionMailer::Base.deliveries.count).to eq(1)
       end
 
       it "sends an email through an html request" do
-        post :send_email, params: { recipe_id: recipe.id, email: "dave@test.com" }
+        post :send_email, params: { id: recipe.id, email: "dave@test.com" }
 
         expect(ActionMailer::Base.deliveries.count).to eq(1)
         expect(response).to redirect_to recipe_path(recipe.slug)
@@ -65,7 +65,7 @@ describe RecipesController do
       let!(:recipe) { Fabricate(:recipe) }
 
       it "does not send an email" do
-        post :send_email, xhr: true, params: { recipe_id: recipe.id, email: "" }
+        post :send_email, xhr: true, params: { id: recipe.id, email: "" }
         expect(ActionMailer::Base.deliveries.count).to eq(0)
       end
     end

@@ -6,6 +6,12 @@
   <%= octicon "tag", height: 22 %>
   <p>Categories <span class="badge"><%= Category.count %></span></p>
 <% end %>
+<% if logged_in? %>
+  <%= link_to favorites_path, class: "link-icon" do %>
+    <%= octicon "heart", height: 22 %>
+    <p>Favorites <span class="badge"></span></p>
+  <% end %>
+<% end %>
 
 <div class="admin-control mt-2">
   <% if logged_in? %>

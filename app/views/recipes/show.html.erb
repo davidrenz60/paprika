@@ -24,9 +24,14 @@
           <p class="small-font"><em><%= @categories %></em></p>
           <% if @recipe.source %>
             <p class="small-font"><em>From</em>
-            <%= link_to @recipe.source, "http://#{@recipe.source}" %>
+              <%= link_to @recipe.source, "http://#{@recipe.source}" %>
+            </p>
           <% end %>
-          </p>
+          <% if current_user.favorited? @recipe %>
+            <%= link_to "", favorite_path(@recipe.id),  method: "delete", remote: true, id: "unfavorite-link" %>
+          <% else %>
+            <%= link_to "", favorites_path(recipe_id: @recipe.id), method: "post", remote: true, id: "favorite-link" %>
+          <% end %>
         </div>
       </div>
     </div>
