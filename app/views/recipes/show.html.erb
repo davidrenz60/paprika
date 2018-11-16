@@ -27,10 +27,12 @@
               <%= link_to @recipe.source, "http://#{@recipe.source}" %>
             </p>
           <% end %>
-          <% if current_user.favorited? @recipe %>
-            <%= link_to "", favorite_path(@recipe.id),  method: "delete", remote: true, id: "unfavorite-link" %>
-          <% else %>
-            <%= link_to "", favorites_path(recipe_id: @recipe.id), method: "post", remote: true, id: "favorite-link" %>
+          <% if logged_in? %>
+            <% if current_user.favorited? @recipe  %>
+              <%= link_to "", favorite_path(@recipe.id),  method: "delete", remote: true, id: "unfavorite-link" %>
+            <% else %>
+              <%= link_to "", favorites_path(recipe_id: @recipe.id), method: "post", remote: true, id: "favorite-link" %>
+            <% end %>
           <% end %>
         </div>
       </div>
