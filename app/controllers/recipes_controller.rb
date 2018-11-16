@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
   end
 
   def send_email
-    recipe = Recipe.find(params[:recipe_id])
+    recipe = Recipe.find(params[:id])
     email = params[:email]
     RecipeMailer.recipe_email(recipe, email).deliver_now
 

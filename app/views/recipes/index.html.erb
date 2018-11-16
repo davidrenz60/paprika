@@ -24,14 +24,7 @@
 <div class="recipes-list">
   <ul class="list-group">
     <% @recipes.each do |recipe| %>
-      <li class="recipe-list-item py-1 pl-2">
-        <%= link_to recipe_path(recipe) do %>
-          <%= image_tag recipe.photo_url, class: "recipe-img" %>
-          <div class="recipe-list-item-info">
-            <h5 class="mt-2 recipe-name"><%= recipe.name %></h5>
-          </div>
-        <% end %>
-      </li>
+      <%= render 'recipe', recipe: recipe %>
     <% end %>
   </ul>
 </div>

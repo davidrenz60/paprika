@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="modal-body">
-         <%= form_tag recipe_send_email_path(@recipe.id), remote: true do  %>
+         <%= form_tag send_email_recipe_path(@recipe.id), remote: true do  %>
           <div class="form-group">
             <%= label_tag :email %>
             <%= email_field_tag :email, nil, class: "form-control", required: true %>

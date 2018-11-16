@@ -3,14 +3,21 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:index, :show] do
     resources :comments, only: [:create]
-    post '/send_email', to: "recipes#send_email"
+
+    member do
+      post :send_email
+    end
+
     collection do
       post "sync"
     end
   end
 
   resources :categories, only: [:index, :show]
+
   resources :users, only: [:create]
+  resources :favorites, only: [:index, :create, :destroy]
+
 
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'

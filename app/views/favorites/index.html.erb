@@ -1,0 +1,20 @@
+<% content_for :header do %>
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to recipes_path, class: "link-icon header-button btn btn-sm" do %>
+        <%= octicon "arrow-left" %>
+        <p>Back</p>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+<h5 class="mb-4 ml-2 mt-2">Your Favorites</h5>
+
+<div class="recipes-list">
+  <ul class="list-group">
+    <% current_user.favorite_recipes.each do |recipe| %>
+      <%= render 'recipes/recipe', recipe: recipe %>
+    <% end %>
+  </ul>
+</div>

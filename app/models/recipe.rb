@@ -13,6 +13,9 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_categories, primary_key: :uid, foreign_key: :recipe_uid
   has_many :categories, through: :recipe_categories
 
+  has_many :user_recipes
+  has_many :favorited_by, through: :user_recipes, source: :user
+
   def should_generate_new_friendly_id?
     name_changed? || super
   end

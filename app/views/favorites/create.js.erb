@@ -1,0 +1,3 @@
+<% if @favorite %>
+  $('#favorite-link').replaceWith('<%= link_to "", favorite_path(@recipe.id),  method: "delete", remote: true, id: "unfavorite-link" %>')
+<% end %>
