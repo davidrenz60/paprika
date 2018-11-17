@@ -8,10 +8,9 @@ class UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      flash[:notice] = "You are registered and logged in as #{@user.username}."
+      flash[:success] = "You are registered and logged in as #{@user.username}."
       redirect_to root_path
     else
-      flash.now[:danger] = "There was a problem registering."
       render :new
     end
   end

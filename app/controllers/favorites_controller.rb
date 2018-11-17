@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.html do
         if @favorite
-          flash[:notice] = "You favorited this recipe"
+          flash[:success] = "You favorited this recipe"
         else
           flash[:danger] = "You have already favorited this recipe"
         end
@@ -30,7 +30,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.html do
         if @favorite
-          flash[:notice] = "You unfavorited this recipe"
+          flash[:success] = "You unfavorited this recipe"
         else
           flash[:danger] = "You have not favorited this recipe"
         end

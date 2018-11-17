@@ -4,9 +4,10 @@ class User < ActiveRecord::Base
   has_many :user_recipes
   has_many :favorite_recipes, through: :user_recipes, source: :recipe
 
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   validates :password, presence: true
-  validates :email, presence: true
+
 
   def admin?
     role == "admin"

@@ -12,7 +12,7 @@ describe SessionsController do
     end
 
     it "sets a flash message if already logged in." do
-      expect(flash[:notice]).not_to be_nil
+      expect(flash[:success]).not_to be_nil
     end
   end
 
@@ -33,7 +33,7 @@ describe SessionsController do
       end
 
       it 'sets a flash message' do
-        expect(flash[:notice]).not_to be_nil
+        expect(flash[:success]).not_to be_nil
       end
     end
 
@@ -71,7 +71,7 @@ describe SessionsController do
     end
 
     it 'sets a flash message' do
-      expect(flash[:notice]).not_to be_nil
+      expect(flash[:success]).not_to be_nil
     end
   end
 end

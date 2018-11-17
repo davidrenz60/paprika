@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     sync = PaprikaSync.new.call
 
     if sync.successful?
-      flash[:info] = "Recipes successfully synced."
+      flash[:success] = "Recipes successfully synced."
     else
       flash[:danger] = sync.error_message
     end
