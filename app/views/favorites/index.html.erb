@@ -9,12 +9,9 @@
   </ul>
 <% end %>
 
-<h5 class="mb-4 ml-2 mt-2">Your Favorites</h5>
-
 <div class="recipes-list">
+  <h5 class="mb-4 ml-2 mt-2">Your Favorites</h5>
   <ul class="list-group">
-    <% current_user.favorite_recipes.each do |recipe| %>
-      <%= render 'recipes/recipe', recipe: recipe %>
-    <% end %>
+    <%= render current_user.favorite_recipes %>
   </ul>
 </div>
