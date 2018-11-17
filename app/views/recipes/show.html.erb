@@ -55,9 +55,7 @@
       <h5 class="pb-4">Comments (<%= @recipe.comments.count %>)</h5>
       <% if logged_in? %>
         <div class="comments">
-          <% @recipe.comments.each do |comment| %>
-            <%= render 'comments/comment', comment: comment %>
-          <% end %>
+          <%= render @recipe.comments %>
           <%= render 'comments/new', recipe: @recipe, comment: @comment %>
         </div>
       <% else %>
