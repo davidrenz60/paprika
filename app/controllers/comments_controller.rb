@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     comment.user = current_user
 
     if comment.save
-      flash[:notice] = "Your comment was submitted"
+      flash[:success] = "Your comment was submitted"
     else
       flash[:danger] = "There was a problem submitting your comment."
     end

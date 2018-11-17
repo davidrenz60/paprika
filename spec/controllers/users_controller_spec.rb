@@ -16,7 +16,7 @@ describe UsersController do
       end
 
       it 'sets a flash message' do
-        expect(flash[:notice]).not_to be_nil
+        expect(flash[:success]).not_to be_nil
       end
 
       it "redirects to the root path" do
@@ -31,10 +31,6 @@ describe UsersController do
 
       it "does not create a new user" do
         expect(User.count).to eq(0)
-      end
-
-      it 'sets a flash message' do
-        expect(flash[:danger]).not_to be_nil
       end
 
       it "renders the new template" do

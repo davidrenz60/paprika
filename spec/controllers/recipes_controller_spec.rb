@@ -12,7 +12,7 @@ describe RecipesController do
       end
 
       it "sets a flash messsage" do
-        expect(flash[:info]).not_to be_nil
+        expect(flash[:success]).not_to be_nil
       end
 
       it "redirects to the recipes path" do

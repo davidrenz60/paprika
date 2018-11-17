@@ -1,7 +1,11 @@
-<div class="message">
-  <% if flash.keys.any? %>
-      <% flash.keys.each do |key| %>
-        <p><%= flash[key] %></p>
-      <% end %>
+<% if flash.keys.any? %>
+  <% flash.keys.each do |key| %>
+    <div class="ml-3 mr-3 alert alert-<%=key %> alert-dismissable fade show" role="alert">
+      <%= flash[key] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   <% end %>
-</div>
+<% end %>
+
