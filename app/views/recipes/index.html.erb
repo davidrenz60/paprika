@@ -3,7 +3,7 @@
     <li class="nav-item">
       <div class="input-group input-group-sm recipe-search">
         <%= octicon "search" %>
-        <input type="text" placeholder="Search by Name" id="search-bar" class="form-control">
+        <input data-target="search.query" data-action="input->search#search" type="text" placeholder="Search by Name" id="search-bar" class="form-control">
       </div>
     </li>
     <li class="recipe-sort nav-item">

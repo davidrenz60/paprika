@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-  <body>
+  <body data-controller="search">
     <div class="header">
       <%= render 'shared/header' %>
     </div>
@@ -24,5 +24,6 @@
       </div>
     </div>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>
