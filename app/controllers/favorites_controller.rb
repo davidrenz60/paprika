@@ -1,7 +1,8 @@
 class FavoritesController < ApplicationController
   before_action :require_user, only: [:create, :index, :destroy]
 
-  def index; end
+  def index
+  end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
@@ -22,8 +23,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find_by(id: params[:id])
-    @favorite = UserRecipe.find_by(recipe_id: @recipe.id, user_id: current_user.id)
+    @recipe = Recipe.find_by(id: params[:recipe_id])
+    @favorite = UserRecipe.find_by(recipe_id: params[:recipe_id], user_id: current_user.id)
 
     @favorite.destroy if @favorite
 

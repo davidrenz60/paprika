@@ -28,11 +28,13 @@
             </p>
           <% end %>
           <% if logged_in? %>
-            <% if current_user.favorited? @recipe  %>
-              <%= link_to "", favorite_path(@recipe.id),  method: "delete", remote: true, id: "unfavorite-link" %>
-            <% else %>
-              <%= link_to "", favorites_path(recipe_id: @recipe.id), method: "post", remote: true, id: "favorite-link" %>
-            <% end %>
+            <div data-controller="favorite" data-favorite-recipe-id="<%= @recipe.id %>">
+              <% if current_user.favorited? @recipe %>
+                <a href="" id="unfavorite-link" data-action="click->favorite#unfavorite"></a>
+              <% else %>
+                <a href="" id="favorite-link" data-action="click->favorite#favorite"></a>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -50,14 +52,11 @@
     </div>
   </div>
 
-  <div class="row ">
+  <div class="row" data-controller="comments" data-comments-recipe-id="<%= @recipe.id %>">
     <div class="col pt-3 pb-5">
-      <h5 class="pb-4">Comments (<%= @recipe.comments.count %>)</h5>
+      <h5 class="pb-4">Comments (<%= @recipe.comments.count %>) <a data-action="click->comments#render" data-target="comments.arrow" class="comment-arrow">►</a></h5>
       <% if logged_in? %>
-        <div class="comments">
-          <%= render @recipe.comments %>
-          <%= render 'comments/new', recipe: @recipe, comment: @comment %>
-        </div>
+        <div class="comments" data-target="comments.el"></div>
       <% else %>
         <p>Please <%= link_to "login", login_path %> to view comments</p>
       <% end %>

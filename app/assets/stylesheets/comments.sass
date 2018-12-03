@@ -6,3 +6,34 @@
 .comment-button
   background: #9C0000
   color: white
+
+.comment-arrow
+  display: inline-block
+  cursor: pointer
+
+.rotate
+  animation-duration: 300ms
+  animation-fill-mode: forwards
+  animation-name: rotate
+
+@keyframes rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(90deg)
+
+.loader
+  width: 25px
+  height: 25px
+  border: 4px rgba(#000,0.25) solid
+  border-top: 4px rgba(#000,1) solid
+  border-radius: 50%
+  -webkit-animation: spCircRot .6s infinite linear
+  animation: spCircRot .6s infinite linear
+
+@keyframes spCircRot
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(359deg)
+

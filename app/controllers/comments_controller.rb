@@ -1,6 +1,15 @@
 class CommentsController < ApplicationController
   before_action :require_user
 
+  def index
+    recipe = Recipe.find(params[:recipe_id])
+    respond_to do |format|
+      format.json do
+        render json: recipe.comments.to_json
+      end
+    end
+  end
+
   def create
     recipe = Recipe.find(params[:recipe_id])
     comment = Comment.new(comment_params)
