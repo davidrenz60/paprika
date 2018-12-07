@@ -1,28 +1,35 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["el", "arrow"]
+  static targets = ["el", "arrow", "form", "textarea"]
 
-  render() {
-    const self = this
+  open() {
     this.rotateArrow()
-    this.elTarget.innerHTML = self.loader()
+    this.showLoader()
+  }
 
-    fetch(this.url).then(response => {
-      return response.json()
-    }).then(json => {
-      let comments = ""
+  render(e) {
+    let [data, status, xhr] = e.detail
+    this.el.innerHTML = xhr.response
+    this.showCommentForm()
+  }
 
-      json.forEach(comment => {
-        comments += self.template(comment)
-      })
-
-      self.elTarget.innerHTML = comments
-    })
+  create(e) {
+    let [data, status, xhr] = e.detail
+    this.el.innerHTML += xhr.response
+    this.textareaTarget.value = ""
   }
 
   rotateArrow() {
     this.arrowTarget.classList.add('rotate')
+  }
+
+  showCommentForm() {
+    this.formTarget.style.display = "block"
+  }
+
+  showLoader() {
+    this.el.innerHTML = `<div class="loader"></div>`
   }
 
   get recipeId() {
@@ -37,24 +44,5 @@ export default class extends Controller {
     return this.elTarget
   }
 
-  template(comment) {
-    return (
-    `<div class="comment mb-4">
-      <div class="comment-header">
-        <img class="avatar" src="https://www.gravatar.com/avatar/0000.jpg">
-        <div class="commenter-info mb-3 ml-5">
-          <p class="m-0 font-weight-bold">Username</strong>
-          <p class="m-0"><small>${comment.created_at}</small></p>
-        </div>
-      </div>
-      <div class="comment-body">
-        <p class="m-0">${comment.body}</p>
-      </div>
-    </div>`
-    )
-  }
 
-  loader() {
-    return (`<div class="loader"></div>`)
-  }
 }

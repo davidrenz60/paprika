@@ -3,11 +3,7 @@ class CommentsController < ApplicationController
 
   def index
     recipe = Recipe.find(params[:recipe_id])
-    respond_to do |format|
-      format.json do
-        render json: recipe.comments.to_json
-      end
-    end
+    render recipe.comments
   end
 
   def create
@@ -17,13 +13,11 @@ class CommentsController < ApplicationController
     comment.recipe = recipe
     comment.user = current_user
 
-    if comment.save
-      flash[:success] = "Your comment was submitted"
+    if request.xhr?
+      render comment
     else
-      flash[:danger] = "There was a problem submitting your comment."
+      redirect_to recipe_path(recipe)
     end
-
-    redirect_to recipe_path(recipe)
   end
 
   private
