@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
 
     comment.recipe = recipe
     comment.user = current_user
+    comment.save
 
     if request.xhr?
       render comment

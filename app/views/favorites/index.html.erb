@@ -10,8 +10,8 @@
 <% end %>
 
 <div class="recipes-list">
-  <h5 class="mb-4 ml-2 mt-2">Your Favorites</h5>
+  <h5 class="mb-4 ml-2 mt-2"><span class="heart-solid"></span>Your Favorites</h5>
   <ul class="list-group">
-    <%= render current_user.favorite_recipes %>
+    <%= render @recipes %>
   </ul>
 </div>

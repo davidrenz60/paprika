@@ -1,0 +1,7 @@
+<div data-controller="favorite">
+  <% if current_user.favorited? recipe %>
+    <%= render 'favorites/unfavorite_link', recipe: recipe %>
+  <% else %>
+    <%= render 'favorites/favorite_link', recipe: recipe %>
+  <% end %>
+</div>

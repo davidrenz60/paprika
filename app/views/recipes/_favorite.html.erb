@@ -1,7 +1,0 @@
-<div data-controller="favorite" data-favorite-recipe-id="<%= recipe.id %>">
-  <% if current_user.favorited? recipe %>
-    <a href="" id="unfavorite-link" data-action="click->favorite#unfavorite"></a>
-  <% else %>
-    <a href="" id="favorite-link" data-action="click->favorite#favorite"></a>
-  <% end %>
-</div>

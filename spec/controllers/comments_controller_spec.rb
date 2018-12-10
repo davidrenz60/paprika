@@ -26,10 +26,6 @@ describe CommentsController do
       it "redirects to the recipe path" do
         expect(response).to redirect_to recipe_path(recipe)
       end
-
-      it "sets a flash message" do
-        expect(flash[:success]).not_to be_nil
-      end
     end
 
     context "with invalid params" do
@@ -47,10 +43,6 @@ describe CommentsController do
 
       it "redirects to the recipe path" do
         expect(response).to redirect_to recipe_path(recipe)
-      end
-
-      it "sets a flash message" do
-        expect(flash[:danger]).not_to be_nil
       end
     end
 

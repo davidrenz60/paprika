@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show] do
     resources :comments, only: [:create, :index]
 
-    get '/favorite', to: 'favorites#create'
-    get '/unfavorite', to: 'favorites#destroy'
+    post '/favorite', to: 'favorites#create'
+    delete '/unfavorite', to: 'favorites#destroy'
 
     member do
       post :send_email
