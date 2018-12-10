@@ -8,17 +8,14 @@
   </head>
 
   <body>
-    <div class="header">
-      <%= render 'shared/header' %>
-    </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2 menu py-2 px-0">
+        <div class="col-lg-2 menu py-3 px-0">
           <%= render 'shared/menu' %>
-
         </div>
         <div class="col-lg-10 content p-0">
           <%= render 'shared/messages' %>
+          <%= render 'shared/header' %>
           <%= yield %>
         </div>
       </div>
