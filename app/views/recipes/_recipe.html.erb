@@ -1,4 +1,4 @@
-<li class="recipe-list-item py-1 pl-2">
+<li data-target="search.name" data-name="<%= recipe.name %> "class="recipe-list-item py-1 pl-2">
   <%= link_to recipe_path(recipe) do %>
     <%= image_tag recipe.photo_url, class: "recipe-img" %>
     <div class="recipe-list-item-info">

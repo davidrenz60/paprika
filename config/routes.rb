@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root to: "recipes#index"
 
   resources :recipes, only: [:index, :show] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :index]
+
+    post '/favorite', to: 'favorites#create'
+    delete '/unfavorite', to: 'favorites#destroy'
 
     member do
       post :send_email
@@ -16,8 +19,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
 
   resources :users, only: [:create]
-  resources :favorites, only: [:index, :create, :destroy]
-
+  resources :favorites, only: [:index]
 
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'

@@ -1,0 +1,1 @@
+<%= link_to "", recipe_unfavorite_path(recipe.id), method: 'delete', class: "heart-solid", remote: true, data: { type: "html", action: "ajax:success->favorite#replaceLink" } %>

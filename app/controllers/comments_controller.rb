@@ -1,20 +1,24 @@
 class CommentsController < ApplicationController
   before_action :require_user
 
+  def index
+    recipe = Recipe.find(params[:recipe_id])
+    render recipe.comments
+  end
+
   def create
     recipe = Recipe.find(params[:recipe_id])
     comment = Comment.new(comment_params)
 
     comment.recipe = recipe
     comment.user = current_user
+    comment.save
 
-    if comment.save
-      flash[:success] = "Your comment was submitted"
+    if request.xhr?
+      render comment
     else
-      flash[:danger] = "There was a problem submitting your comment."
+      redirect_to recipe_path(recipe)
     end
-
-    redirect_to recipe_path(recipe)
   end
 
   private

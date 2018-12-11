@@ -1,0 +1,1 @@
+<%= link_to "", recipe_favorite_path(recipe.id), class: "heart-outline", remote: true, method: 'post', data: { type: "html", action: "ajax:success->favorite#replaceLink" } %>

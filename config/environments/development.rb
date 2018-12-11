@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # Verifies that versions and hashed value of the package contents in the project's package.json
+config.webpacker.check_yarn_integrity = true
+
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['sendgrid_username'],
     :password => ENV['sendgrid_password'],
