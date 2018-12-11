@@ -1,15 +1,9 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-2 p-0">
-      <% if logged_in? && current_user.admin? %>
-        <%= link_to sync_recipes_path, method: "post", class: "link-icon" do %>
-          <%= octicon "sync", height: 24 %>
-          <p>Sync</p>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-lg-10 p-0">
-      <%= yield :header %>
+<div class="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-10 p-0">
+        <%= yield :header %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,28 +1,32 @@
-<%= link_to recipes_path, class: "link-icon" do %>
-  <%= octicon "note", height: 22 %>
-  <p>Recipes <span class="badge"><%= Recipe.count %></span></p>
-<% end %>
-<%= link_to categories_path, class: "link-icon" do %>
-  <%= octicon "tag", height: 22 %>
-  <p>Categories <span class="badge"><%= Category.count %></span></p>
-<% end %>
-<% if logged_in? %>
-  <%= link_to favorites_path, class: "link-icon" do %>
-    <%= octicon "heart", height: 22 %>
-    <p>Favorites <span class="badge"></span></p>
+<div class="menu-links">
+  <%= link_to recipes_path do %>
+    <%= octicon "note", height: 22 %>
+    <p>Recipes <span class="badge"><%= Recipe.count %></span></p>
   <% end %>
-<% end %>
+  <%= link_to categories_path do %>
+    <%= octicon "tag", height: 22 %>
+    <p>Categories <span class="badge"><%= Category.count %></span></p>
+  <% end %>
 
-<div class="admin-control mt-2">
   <% if logged_in? %>
-    <%= link_to logout_path, method: "post", class: "link-icon" do %>
+    <%= link_to favorites_path do %>
+      <%= octicon "heart", height: 22 %>
+      <p>Favorites <span class="badge"></span></p>
+    <% end %>
+    <%= link_to logout_path, method: "post" do %>
       <%= octicon "sign-out", height: 22 %>
       <p>Logout</p>
     <% end %>
   <% else %>
-    <%= link_to login_path, class: "link-icon" do %>
+    <%= link_to login_path do %>
       <%= octicon "sign-in", height: 22 %>
       <p>Login</p>
+    <% end %>
+  <% end %>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to sync_recipes_path, method: "post" do %>
+      <%= octicon "sync", height: 24 %>
+      <p>Sync</p>
     <% end %>
   <% end %>
 </div>

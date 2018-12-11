@@ -2,8 +2,10 @@
   background: #3E4249
   p
     margin-bottom: 5px
+    display: inline-block
   svg
     fill: #E5E5DA
+    display: inline-block
   a
     color: #E5E5DA
     cursor: pointer
@@ -12,3 +14,10 @@
     padding-left: 10px
     &:hover
       background: #484D51
+
+.menu-links
+  position: fixed
+
+@media (max-width: 992px)
+  .menu-links
+    position: static
