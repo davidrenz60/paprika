@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
   def send_email
     recipe = Recipe.find(params[:id])
     email = params[:email]
-    RecipeMailer.recipe_email(recipe, email).deliver_now
+    AppMailer.send_recipe(recipe, email).deliver_now
 
     respond_to do |format|
       format.html { redirect_to recipe_path(recipe) }

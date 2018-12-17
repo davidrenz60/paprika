@@ -1,6 +1,6 @@
 <div class="form-container ml-5 mt-5">
   <h4 class="mb-3">Not registered? Sign up <%= link_to "here", register_path %></h4>
-  <%= form_for '/login' do %>
+  <%= form_tag '/login' do %>
     <h4>Login</h4>
     <div class="form-group">
       <%= label_tag :username %>
@@ -14,4 +14,8 @@
       <%= submit_tag 'Login' %>
     </div>
   <% end %>
+  <p><small>
+    Forgot your
+    <%= link_to "password?", forgot_password_path %>
+  </small></p>
 </div>

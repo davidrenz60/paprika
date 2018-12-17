@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-config.webpacker.check_yarn_integrity = true
+  config.webpacker.check_yarn_integrity = true
 
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['sendgrid_username'],
@@ -11,6 +11,8 @@ config.webpacker.check_yarn_integrity = true
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
   # Settings specified here will take precedence over those in config/application.rb.
 

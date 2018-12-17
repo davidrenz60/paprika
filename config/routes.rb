@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :favorites, only: [:index]
 
+  get '/forgot_password', to: 'forgot_passwords#new'
+  get '/invalid_token', to: 'pages#invalid_token'
+  get '/expired_token', to: 'pages#expired_token'
+  resources :forgot_passwords, only: [:create]
+  resources :reset_passwords, only: [:show, :create], param: :token
+
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
