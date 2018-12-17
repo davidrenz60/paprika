@@ -11,6 +11,8 @@ config.webpacker.check_yarn_integrity = false
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+
+  config.action_mailer.default_url_options = { :protocol => 'https', :host => "renz-recipes.herokuapp.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
