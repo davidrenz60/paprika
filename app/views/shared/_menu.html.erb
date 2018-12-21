@@ -13,6 +13,10 @@
       <%= octicon "heart", height: 22 %>
       <p>Favorites <span class="badge"></span></p>
     <% end %>
+    <%= link_to new_invitation_path do %>
+      <%= octicon "organization", height: 22 %>
+      <p>Invite a Friend</p>
+    <% end %>
     <%= link_to logout_path, method: "post" do %>
       <%= octicon "sign-out", height: 22 %>
       <p>Logout</p>

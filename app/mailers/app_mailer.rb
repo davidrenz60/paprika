@@ -14,4 +14,11 @@ class AppMailer < ActionMailer::Base
     @email = email
     mail(to: @email, subject: "Here is your recipe!")
   end
+
+  def send_invitation(email, username, message)
+    @email = email
+    @message = message
+    @username = username
+    mail(to: @email, subject: "Join Renz Recipes")
+  end
 end

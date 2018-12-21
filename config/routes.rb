@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create]
   resources :favorites, only: [:index]
+  resources :invitations, only: [:new, :create]
 
   get '/forgot_password', to: 'forgot_passwords#new'
   get '/invalid_token', to: 'pages#invalid_token'
