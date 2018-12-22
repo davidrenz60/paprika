@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
 
+  after_save :notify_admins
+
   def admin?
     role == "admin"
   end
@@ -28,5 +30,15 @@ class User < ActiveRecord::Base
   def clear_token
     update_column(:token, nil)
     update_column(:token_expiration, nil)
+  end
+
+  def notify_admins
+    admin_emails = User.admin_emails
+
+    AppMailer.send_new_user_update(admin_emails, self).deliver_now unless admin? || admin_emails.blank?
+  end
+
+  def self.admin_emails
+    where(role: "admin").pluck(:email)
   end
 end
