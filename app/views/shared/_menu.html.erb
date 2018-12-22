@@ -1,35 +1,35 @@
 <div class="menu-links">
   <%= link_to recipes_path do %>
-    <%= octicon "note", height: 22 %>
+    <%= octicon "note" %>
     <p>Recipes <span class="badge"><%= Recipe.count %></span></p>
   <% end %>
   <%= link_to categories_path do %>
-    <%= octicon "tag", height: 22 %>
+    <%= octicon "tag" %>
     <p>Categories <span class="badge"><%= Category.count %></span></p>
   <% end %>
 
   <% if logged_in? %>
     <%= link_to favorites_path do %>
-      <%= octicon "heart", height: 22 %>
+      <%= octicon "heart" %>
       <p>Favorites <span class="badge"></span></p>
     <% end %>
     <%= link_to new_invitation_path do %>
-      <%= octicon "organization", height: 22 %>
+      <%= octicon "organization" %>
       <p>Invite a Friend</p>
     <% end %>
     <%= link_to logout_path, method: "post" do %>
-      <%= octicon "sign-out", height: 22 %>
+      <%= octicon "sign-out" %>
       <p>Logout</p>
     <% end %>
   <% else %>
     <%= link_to login_path do %>
-      <%= octicon "sign-in", height: 22 %>
+      <%= octicon "sign-in" %>
       <p>Login</p>
     <% end %>
   <% end %>
   <% if logged_in? && current_user.admin? %>
     <%= link_to sync_recipes_path, method: "post" do %>
-      <%= octicon "sync", height: 24 %>
+      <%= octicon "sync" %>
       <p>Sync</p>
     <% end %>
   <% end %>
