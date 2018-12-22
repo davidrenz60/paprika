@@ -17,10 +17,8 @@ describe Recipe do
       it "deletes the recipe" do
         Recipe.delete_not_in(uids)
         expect(Recipe.count).to eq(2)
-        expect(Recipe.all.map(&:uid)).to eq(uids)
+        expect(Recipe.all.map(&:uid)).to match_array(uids)
       end
-
-
     end
   end
 end

@@ -21,4 +21,9 @@ class AppMailer < ActionMailer::Base
     @username = username
     mail(to: @email, subject: "Join Renz Recipes")
   end
+
+  def send_new_user_update(emails, user)
+    @user = user
+    mail(to: emails, subject: "New User Notification")
+  end
 end

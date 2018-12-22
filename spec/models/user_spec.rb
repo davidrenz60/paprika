@@ -33,4 +33,31 @@ describe User do
       expect(user.token_expiration).to be_nil
     end
   end
+
+  describe '#notify_admins' do
+    context "with admins" do
+      let!(:admin1) { Fabricate(:admin) }
+      let!(:admin2) { Fabricate(:admin) }
+
+      it "sends an email to all admin users" do
+        Fabricate(:user)
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+      end
+
+      it "sends emails to all admin users" do
+        Fabricate(:user)
+        admin_emails = User.where(role: "admin").pluck(:email)
+        sent_emails = ActionMailer::Base.deliveries.map(&:to).first
+
+        expect(admin_emails).to eq(sent_emails)
+      end
+    end
+
+    context "with no admin users" do
+      it "does not send any emails" do
+        Fabricate(:user)
+        expect(ActionMailer::Base.deliveries.count).to eq(0)
+      end
+    end
+  end
 end
