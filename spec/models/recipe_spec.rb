@@ -21,4 +21,35 @@ describe Recipe do
       end
     end
   end
+
+  describe "#update_average_rating" do
+    context "when reviews are created" do
+      let!(:recipe) { Fabricate(:recipe) }
+
+      it "creates an average rating for the recipe" do
+        Fabricate(:rating, rating: 3, recipe: recipe)
+        expect(recipe.reload.average_rating).to eq("3.0")
+      end
+
+      it "rounds to the nearest 0.5 point" do
+        Fabricate(:rating, rating: 2, recipe: recipe)
+        Fabricate(:rating, rating: 5, recipe: recipe)
+        Fabricate(:rating, rating: 4, recipe: recipe)
+        expect(recipe.reload.average_rating).to eq("3.5")
+      end
+    end
+
+    context "no ratings associated" do
+      let!(:recipe) { Fabricate(:recipe) }
+
+      it "returns nil" do
+        recipe.update_average_rating
+        expect(recipe.average_rating).to eq(nil)
+      end
+
+      it "keeps the average_rating column as nil" do
+        expect(recipe.update_average_rating).to be_nil
+      end
+    end
+  end
 end

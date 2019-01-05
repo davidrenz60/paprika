@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:index, :show] do
     resources :comments, only: [:create, :index]
+    resources :ratings, only: [:create]
 
     post '/favorite', to: 'favorites#create'
     delete '/unfavorite', to: 'favorites#destroy'

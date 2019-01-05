@@ -19,8 +19,9 @@
         <div class="p-0">
           <%= image_tag @recipe.photo_url, class: "recipe-img" %>
         </div>
-        <div class="col">
-          <h4 class="mt-2"><%= @recipe.name %></h4>
+        <div class="col mt-1">
+          <h4 class="mb-0"><%= @recipe.name %></h4>
+          <%= display_recipe_rating @recipe.average_rating %>
           <p class="small-font"><em><%= @categories %></em></p>
           <% if @recipe.source %>
             <p class="small-font"><em>From</em>
@@ -44,6 +45,10 @@
       <h5>Directions</h5>
       <%= simple_format @recipe.directions %>
     </div>
+  </div>
+
+  <div>
+    <%= render 'ratings/rating_form', recipe: @recipe, rating: current_user.rating_for(@recipe) if logged_in? %>
   </div>
 
   <div class="row" data-controller="comments">

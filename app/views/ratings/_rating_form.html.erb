@@ -1,0 +1,10 @@
+<div class="rating-form" data-controller="ratings" data-ratings-user-rating="<%= rating %>">
+  <% if rating %>
+    <h5>Your Rating(<%= rating %>)</h5>
+  <% else %>
+    <h5>Rate this recipe</h5>
+  <% end %>
+  <div class="rating">
+    <%= render 'ratings/rating_links', recipe: recipe %>
+  </div>
+</div>
