@@ -27,6 +27,10 @@ class Recipe < ActiveRecord::Base
     update(average_rating: rounded_average)
   end
 
+  def average_rating_class
+    "stars-" + average_rating.split('.').join('') if average_rating
+  end
+
   def self.uids
     all.map(&:uid)
   end

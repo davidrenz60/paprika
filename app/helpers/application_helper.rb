@@ -16,8 +16,4 @@ module ApplicationHelper
   def display_datetime(dt)
     dt.strftime("%m/%d/%y at %l:%M%P")
   end
-
-  def display_recipe_rating(rating)
-    render 'ratings/' + (rating || '0.0')
-  end
 end

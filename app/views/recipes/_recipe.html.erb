@@ -6,7 +6,7 @@
       </div>
       <div class="recipe-list-item-info ml-1 mt-1">
         <h5 class="mb-0"><%= recipe.name %></h5>
-        <%= display_recipe_rating recipe.average_rating %>
+        <%= render 'ratings/average_rating', rating_class: recipe.average_rating_class %>
       </div>
     </div>
   <% end %>
