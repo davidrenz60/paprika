@@ -32,6 +32,14 @@ describe RatingsController do
 
         expect(user.ratings.first.rating).to eq(5)
       end
+
+      it "updates the average_rating for the recipe" do
+        set_current_user(user)
+        Fabricate(:rating, user: user, recipe: recipe, rating: 1)
+        post :create, params: { recipe_id: recipe.id, rating: 5 }
+
+        expect(recipe.reload.average_rating).to eq("5.0")
+      end
     end
 
     it_behaves_like "require user" do

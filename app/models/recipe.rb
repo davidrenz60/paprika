@@ -28,7 +28,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def average_rating_class
-    "stars-" + average_rating.split('.').join('') if average_rating
+    average_rating.split('.').join('') if average_rating
   end
 
   def self.uids

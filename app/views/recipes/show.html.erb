@@ -21,16 +21,14 @@
         </div>
         <div class="col mt-1">
           <h4 class="mb-0"><%= @recipe.name %></h4>
-          <%= render 'ratings/average_rating', rating_class: @recipe.average_rating_class %>
+          <%= render 'ratings/average_rating', rating_class: @recipe.average_rating_class, id: "average-rating" %>
           <p class="small-font"><em><%= @categories %></em></p>
           <% if @recipe.source %>
             <p class="small-font"><em>From</em>
               <%= link_to @recipe.source, "http://#{@recipe.source}" %>
             </p>
           <% end %>
-          <% if logged_in? %>
-            <%= render 'favorites/favorite_links', recipe: @recipe %>
-          <% end %>
+            <%= render 'favorites/favorite_links', recipe: @recipe if logged_in? %>
         </div>
       </div>
     </div>
@@ -47,9 +45,11 @@
     </div>
   </div>
 
-  <div>
-    <%= render 'ratings/rating_form', recipe: @recipe, rating: current_user.rating_for(@recipe) if logged_in? %>
-  </div>
+  <% if logged_in? %>
+    <div data-controller="ratings" data-ratings-average-rating="<%= @recipe.average_rating %>" data-ratings-user-rating="<%= current_user.rating_for(@recipe) %>">
+      <%= render 'ratings/rating_form', recipe: @recipe, rating: current_user.rating_for(@recipe) %>
+    </div>
+  <% end %>
 
   <div class="row" data-controller="comments">
     <div class="col pt-3 pb-5">

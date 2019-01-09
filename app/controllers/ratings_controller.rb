@@ -11,6 +11,15 @@ class RatingsController < ApplicationController
       Rating.create(recipe: recipe, user: current_user, rating: params[:rating]).save
     end
 
-    render partial: 'ratings/rating_form', locals: { recipe: recipe, rating: params[:rating] }
+    recipe.reload
+    html = render_to_string partial: 'ratings/rating_form', locals: { recipe: recipe, rating: params[:rating] }
+
+    response = {
+      html: html,
+      user_rating: params[:rating],
+      average_rating: recipe.average_rating
+    }
+
+    render json: response.to_json
   end
 end

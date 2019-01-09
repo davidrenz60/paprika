@@ -6,6 +6,8 @@ class Rating < ActiveRecord::Base
 
   after_save :update_recipe_rating
 
+  validates_uniqueness_of :user, scope: :recipe_id
+
   private
 
   def update_recipe_rating
