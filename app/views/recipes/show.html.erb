@@ -21,7 +21,7 @@
         </div>
         <div class="col mt-1">
           <h4 class="mb-0"><%= @recipe.name %></h4>
-          <%= render 'ratings/average_rating', rating_class: @recipe.average_rating_class, id: "average-rating" %>
+          <%= render 'ratings/average_rating', rating_class: @recipe.average_rating_class %>
           <p class="small-font"><em><%= @categories %></em></p>
           <% if @recipe.source %>
             <p class="small-font"><em>From</em>

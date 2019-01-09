@@ -15,6 +15,7 @@
           <h6 class="dropdown-header">Sort By</h6>
           <%= link_to "Name", recipes_path, class: "dropdown-item" %>
           <%= link_to "Most Recent", recipes_path(sort_by: "created"), class: "dropdown-item" %>
+          <%= link_to "Highest Rated", recipes_path(sort_by: "rating"), class: "dropdown-item" %>
         </div>
       </div>
     </li>
