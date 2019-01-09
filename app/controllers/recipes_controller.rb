@@ -4,6 +4,8 @@ class RecipesController < ApplicationController
   def index
     @recipes = if params[:sort_by] == "created"
                  Recipe.all.order(created: :desc)
+               elsif params[:sort_by] == "rating"
+                 Recipe.order('average_rating DESC NULLS LAST')
                else
                  Recipe.all.order(:name)
                end

@@ -7,3 +7,4 @@ class CategoriesController < ApplicationController
     @category = Category.friendly.find(params[:id])
   end
 end
+

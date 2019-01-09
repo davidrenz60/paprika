@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :user_recipes
   has_many :favorite_recipes, through: :user_recipes, source: :recipe
+  has_many :ratings
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
@@ -30,6 +31,11 @@ class User < ActiveRecord::Base
   def clear_token
     update_column(:token, nil)
     update_column(:token_expiration, nil)
+  end
+
+  def rating_for(recipe)
+    rating = Rating.where(user: self, recipe: recipe).first
+    rating.rating if rating
   end
 
   def notify_admins

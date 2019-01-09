@@ -1,0 +1,10 @@
+<div class="rating-form">
+  <% if rating %>
+    <h5>Your Rating (<%= rating %>)</h5>
+  <% else %>
+    <h5>Rate this recipe</h5>
+  <% end %>
+  <div class="rating-form-stars-<%= rating %>" data-target="ratings.ratingFormDiv">
+    <%= render 'ratings/rating_links', recipe: recipe %>
+  </div>
+</div>
