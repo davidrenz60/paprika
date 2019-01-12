@@ -17,7 +17,7 @@
     <div class="recipe-heading container-fluid">
       <div class="row  p-2">
         <div class="p-0">
-          <%= image_tag @recipe.photo_url, class: "recipe-img" %>
+          <%= render 'shared/recipe_img', recipe: @recipe %>
         </div>
         <div class="col mt-1">
           <h4 class="mb-0"><%= @recipe.name %></h4>
